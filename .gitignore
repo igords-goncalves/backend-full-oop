@@ -1,0 +1,28 @@
+# Ignorar arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de configuração específicos para o editor de texto Visual Studio Code
+.vscode/
+
+# Ignorar arquivos e diretórios de dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorar arquivos de compilação e build
+dist/
+*.log
+*.out
+*.class
+
+# Ignorar arquivos de configuração de IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+*.idea/
+
+# Ignorar arquivos de configuração do ambiente de desenvolvimento
+.env
+.env.local
