@@ -7,7 +7,10 @@ export default class Usuario implements IUsuario {
     private _idade: number,
     private _email: string,
     private perfil: Perfil,
-  ) {}
+  ) {
+    this.nome = "Agenor";
+    this.idade = 55;
+  }
 
   //Cada método tem sua responsabilidade
 

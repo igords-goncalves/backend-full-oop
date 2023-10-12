@@ -41,4 +41,26 @@ export default class usuarioController {
       email: newUser.enviarEmailBoasVindas(),
     });
   }
+
+  static getUsuarios(req: Request, res: Response) {
+    const user = {
+      nome: "José",
+      idade: 55,
+      email: "ze@email.com",
+      perfil: {
+        descricao: "Diretor",
+        nivelDeAcesso: 10,
+      },
+    };
+    // TODO: Como definir esse usuário acima diretamente pelo contrutor?
+    const perfil = new Perfil(user.perfil.descricao, user.perfil.nivelDeAcesso);
+    const newUsuario = new Usuario(user.nome, user.idade, user.email, perfil);
+
+    return res.status(201).json({
+      error: false,
+      usuario: newUsuario,
+      apresentacao: newUsuario.apresentar(),
+      email: newUsuario.enviarEmailBoasVindas(),
+    });
+  }
 }
