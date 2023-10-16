@@ -6,13 +6,11 @@ export default class Usuario implements IUsuario {
     private _nome: string,
     private _idade: number,
     private _email: string,
-    private perfil: Perfil,
-  ) {
-    this.nome = "Agenor";
-    this.idade = 55;
-  }
+    private _perfil: Perfil,
+  ) {}
 
-  //Cada método tem sua responsabilidade
+  // Cada método tem sua responsabilidade
+  // Algumas validações deverão serem feitas no front-end
 
   /**
    * @return {string}
@@ -22,17 +20,17 @@ export default class Usuario implements IUsuario {
    * must access through getters and setters
    */
   public apresentar(): string {
-    return `Ola, eu sou ${this.nome} e tenho idade ${this.idade} anos. 
-    E sou um ${this.perfil.descricao}.`;
+    return `Olá, eu sou ${this.nome} e tenho ${this.idade} anos.`;
   }
 
   public enviarEmailBoasVindas() {
+    console.log(`Bem vindo ao nosso departamento ${this.nome}`);
     return `Email de boas-vindas enviado para ${this.email}`;
   }
 
   public validarIdade() {
-    if (this.idade < 0) {
-      return `Idade inválida!`;
+    if (this.idade < 1) {
+      return "Idade deve ser uma valor maior que 0";
     }
     return;
   }
@@ -43,7 +41,7 @@ export default class Usuario implements IUsuario {
     );
 
     if (!emailValidity.exec(this.email)) {
-      return "Email inválido.";
+      return "Campo obrigatorio ou email inválido.";
     }
     return;
   }
@@ -66,11 +64,19 @@ export default class Usuario implements IUsuario {
     return this._email;
   }
   private set email(value: string) {
-    // Entenda o que acontece aqui
-    // parece que o e-mail de boas vindas
-    // é criado quando ao setarmos o email
-    // faz sentido essa lógica ser privada
+    // Entenda o que acontece aqui parece
+    // que o e-mail de boas vindas
+    // deve enviado quando um email é adicionado
+    // o que faz sentido de um ponto
+    // de vista lógico.
     this._email = value;
     this.enviarEmailBoasVindas();
+  }
+
+  private get perfil(): Perfil {
+    return this._perfil;
+  }
+  private set perfil(value: Perfil) {
+    this._perfil = value;
   }
 }

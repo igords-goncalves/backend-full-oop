@@ -7,17 +7,19 @@ type usuario = {
   idade: number;
   email: string;
   descricao: string;
-  nivelDeAcesso: number;
+  nivelDeAcesso: string;
 };
 
 export default class usuarioController {
-  static apresentarUsuario(req: Request, res: Response) {
+  // Onde colocar o await?
+  static async apresentarUsuario(req: Request, res: Response) {
     const { nome, idade, email, descricao, nivelDeAcesso }: usuario = req.body;
 
     const perfil = new Perfil(descricao, nivelDeAcesso);
     const newUser = new Usuario(nome, idade, email, perfil);
 
-    // A lógica que faz as validações está em outro lugar
+    // A lógica que faz as validações está no model
+    // só estou utilizando o método
     if (newUser.validarEmail()) {
       res.status(400).json({
         error: true,
@@ -35,32 +37,36 @@ export default class usuarioController {
     }
 
     res.status(201).json({
+      error: false,
       message: "Usuário adicionado com sucesso.",
       usuario: newUser,
-      apresentacao: newUser.apresentar(),
-      email: newUser.enviarEmailBoasVindas(),
+      bio: newUser.apresentar(),
+      boasVindas: newUser.enviarEmailBoasVindas(),
     });
   }
 
-  static getUsuarios(req: Request, res: Response) {
+  static async getUsuarios(req: Request, res: Response) {
+    // TODO: Como definir esse usuário mock acima diretamente pelo contrutor?
     const user = {
       nome: "José",
       idade: 55,
       email: "ze@email.com",
       perfil: {
-        descricao: "Diretor",
-        nivelDeAcesso: 10,
+        descricao: "diretor",
+        nivelDeAcesso: "admin",
       },
     };
-    // TODO: Como definir esse usuário acima diretamente pelo contrutor?
-    const perfil = new Perfil(user.perfil.descricao, user.perfil.nivelDeAcesso);
+
+    const descricao = user.perfil.descricao;
+    const nivelDeAcesso = user.perfil.nivelDeAcesso;
+    const perfil = new Perfil(descricao, nivelDeAcesso);
     const newUsuario = new Usuario(user.nome, user.idade, user.email, perfil);
 
     return res.status(201).json({
       error: false,
       usuario: newUsuario,
-      apresentacao: newUsuario.apresentar(),
-      email: newUsuario.enviarEmailBoasVindas(),
+      bio: newUsuario.apresentar(),
+      boasVindas: newUsuario.enviarEmailBoasVindas(),
     });
   }
 }
