@@ -11,8 +11,7 @@ type usuario = {
 };
 
 export default class usuarioController {
-  // Onde colocar o await?
-  static async apresentarUsuario(req: Request, res: Response) {
+  static criarUsuario(req: Request, res: Response) {
     const { nome, idade, email, descricao, nivelDeAcesso }: usuario = req.body;
 
     const perfil = new Perfil(descricao, nivelDeAcesso);
@@ -26,27 +25,25 @@ export default class usuarioController {
         message: newUser.validarEmail(),
       });
       res.end();
-    }
-
-    if (newUser.validarIdade()) {
+    } else if (newUser.validarIdade()) {
       res.status(400).json({
         error: true,
         message: newUser.validarIdade(),
       });
       res.end();
+    } else {
+      res.status(201).json({
+        error: false,
+        message: "Usuário adicionado com sucesso.",
+        usuario: newUser,
+        bio: newUser.apresentar(),
+        boasVindas: newUser.enviarEmailBoasVindas(),
+      });
     }
-
-    res.status(201).json({
-      error: false,
-      message: "Usuário adicionado com sucesso.",
-      usuario: newUser,
-      bio: newUser.apresentar(),
-      boasVindas: newUser.enviarEmailBoasVindas(),
-    });
   }
 
-  static async getUsuarios(req: Request, res: Response) {
-    // TODO: Como definir esse usuário mock acima diretamente pelo contrutor?
+  static getUsuarios(req: Request, res: Response) {
+    // TODO: Como definir esse usuário mock abaixo diretamente pelo contrutor?
     const user = {
       nome: "José",
       idade: 55,
