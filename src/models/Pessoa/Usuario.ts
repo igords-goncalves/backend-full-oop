@@ -1,4 +1,3 @@
-import Perfil from "../Perfil/Perfil.ts";
 import IUsuario from "../../interfaces/IUsuario.ts";
 
 export default class Usuario implements IUsuario {
@@ -6,7 +5,6 @@ export default class Usuario implements IUsuario {
     private nome: string,
     private idade: number,
     private email: string,
-    private perfil: Perfil,
   ) {}
 
   // Cada método tem sua responsabilidade
@@ -72,12 +70,5 @@ export default class Usuario implements IUsuario {
     // de vista lógico.
     this.email = value;
     this.enviarEmailBoasVindas();
-  }
-
-  private get Perfil(): Perfil {
-    return this.perfil;
-  }
-  private set Perfil(value: Perfil) {
-    this.perfil = value;
   }
 }
