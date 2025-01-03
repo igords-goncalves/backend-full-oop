@@ -21,6 +21,8 @@ export default class Funcionario extends Usuario implements IFuncionario {
     return `O funcionário ${this.Nome} está trabalhando`;
   }
 
+  // ==============================
+
   public get Trabalhando(): boolean {
     return this.trabalhando;
   }

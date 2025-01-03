@@ -16,6 +16,8 @@ export default class Professor extends Usuario implements IProfessor {
     return this.Salario * value;
   }
 
+  // ==============================
+
   public get Especialidade(): string {
     return this.especialidade;
   }

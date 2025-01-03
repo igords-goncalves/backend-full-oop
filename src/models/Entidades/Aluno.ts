@@ -17,6 +17,8 @@ export default class Aluno extends Usuario implements IAluno {
     return true;
   }
 
+  // ==============================
+
   public get Curso(): string {
     return this.curso;
   }
