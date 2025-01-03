@@ -16,6 +16,7 @@ type usuarios = {
   trabalhando: boolean;
 };
 
+//TODO: Porque eu decidi utiliza o método static nos controllers?
 export default class usuarioController {
   static criarAluno(req: Request, res: Response) {
     const { nome, idade, email, matricula, curso }: usuarios = req.body;
@@ -27,6 +28,13 @@ export default class usuarioController {
         message: aluno.validarEmail(),
       });
       return res.end();
+    }
+
+    if (aluno.validarIdade()) {
+      res.status(400).json({
+        error: true,
+        message: aluno.validarIdade(),
+      });
     }
 
     return res.status(201).json({
@@ -139,14 +147,17 @@ export default class usuarioController {
 
     const aulaDeCiencias = new Aula(aluno, professor);
 
-    return res.status(201).json({
+    const data = {
       error: false,
       professor: professor,
       aluno: aluno,
       funcionario: funcionario,
+      apresentar: professor.apresentar(),
       aula: aulaDeCiencias.marcarAula(),
       aulaAprovada: aulaDeCiencias.aprovarAula(),
       aumentoProfessor: professor.receberAumento(5.5),
-    });
+    };
+
+    return res.status(201).json({ data: data });
   }
 }
