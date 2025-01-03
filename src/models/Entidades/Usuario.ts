@@ -7,13 +7,6 @@ export default abstract class Usuario implements IUsuario {
     private email: string,
   ) {}
 
-  /**
-   * @return {string}
-   * @memberof Usuario
-   *
-   * Does not access properties directly,
-   * must access through getters and setters
-   */
   public apresentar(): string {
     return `Olá, eu sou ${this.Nome} e tenho ${this.Idade} anos.`;
   }
@@ -40,6 +33,8 @@ export default abstract class Usuario implements IUsuario {
     }
     return;
   }
+
+  // ====================
 
   private get Idade(): number {
     return this.idade;
