@@ -1,0 +1,18 @@
+# Get all users
+@base_url =  http://localhost:3000
+
+###
+GET {{base_url}}/usuarios HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{base_url}}/criar/aluno HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome":"Fulainho",
+  "email": "fu@email.com",
+  "idade": 0,
+  "matricula":"98765",
+  "curso": "inglês"
+}
