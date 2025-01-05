@@ -1,9 +1,12 @@
 import IAula from "../../interfaces/IAula";
-import Aluno from "../Entidades/Aluno";
-import Professor from "../Entidades/Professor";
+import Aluno from "../Usuario/Aluno";
+import Professor from "../Usuario/Professor";
 
-export default class Aula implements IAula {
+export default abstract class Aula implements IAula {
   constructor(
+    private nome: string,
+    private duracao: number,
+    private rating: number,
     private aluno: Aluno,
     private professor: Professor,
   ) {}
@@ -15,5 +18,17 @@ export default class Aula implements IAula {
   public aprovarAula(): boolean {
     if (!this.professor) return false;
     return true;
+  }
+
+  public get Nome(): string {
+    return this.nome;
+  }
+
+  public get Duracao(): number {
+    return this.duracao;
+  }
+
+  public get Rating(): number {
+    return this.rating;
   }
 }
