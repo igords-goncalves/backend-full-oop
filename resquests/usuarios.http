@@ -1,4 +1,4 @@
-# Get all users
+###
 @base_url =  http://localhost:3000
 
 ###
@@ -12,7 +12,7 @@ Content-Type: application/json
 {
   "nome":"Fulainho",
   "email": "fu@email.com",
-  "idade": 0,
+  "idade": 25,
   "matricula":"98765",
   "curso": "inglês"
 }

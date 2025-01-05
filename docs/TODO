@@ -1,7 +1,14 @@
 Refactoring:
   Cada entidade pode ter o seu controler definido, isso além de melhorias
   em futuras manutenções vai ajudar na construção de testes específicos para cada situação.
-  
-  ☐ Refator controller com foco em separação de responsabilidades; @critical
+
+  ✔ Refator controller com foco em separação de responsabilidades; @critical @done(25-01-04 11:20)
   ☐ Tentar implementar services para cuidar de outras responsabilidades;
   ☐ Cobrir aplicação de testes; @low
+
+Scaling:
+  ✔ Criar entidades de Aula; @done(25-01-04 11:12)
+    ✔ Aula tem nome; @done(25-01-04 11:12)
+    ✔ Aula tem duração; @done(25-01-04 11:12)
+    Duração em horas, dias ou meses?
+    ✔ Aula tem rating; @done(25-01-04 11:12)
